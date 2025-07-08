@@ -1,1 +1,4 @@
 
+[build]
+  publish = "dist"        # or "build" if you're using Create React App
+  command = "npm run build"
