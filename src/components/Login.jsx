@@ -10,24 +10,24 @@ export default function Login() {
     const [user, setUser] = useState({ email: "", password: "" });
     const [message, setMessage] = useState({ type: "", text: "" });
     const [isLoading, setIsLoading] = useState(false);
-    const [showHidePassword,setShowHidePassword] = useState(false)
-    
-    
+    const [showHidePassword, setShowHidePassword] = useState(false)
+
+
 
     const navigate = useNavigate();
 
-   
 
-   
 
-    
+
+
+
     const handleInput = (e) => {
         setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-       
-        
+
+
     };
 
-    const togglePassword = ()=>{
+    const togglePassword = () => {
         setShowHidePassword(prev => !prev)
     }
 
@@ -59,64 +59,52 @@ export default function Login() {
                 return res.json();
             })
             .then((data) => {
-                
+
                 setMessage({ type: "success", text: data.message });
-              
-               
+
+
                 if (data.token) {
                     localStorage.setItem("nutrify-user", JSON.stringify(data));
                     loggedData.setLoggedUser(data);
                     navigate("/track");
-                    
-                    
-                    
+
+
+
                 }
-               
-                
+
+
             })
             .catch((err) => {
                 console.error(err);
                 setMessage({ type: "error", text: "An error occurred. Please try again later." });
             });
-            
+
     };
 
- 
+
 
     return (
         <section className="container">
             <form className="form" onSubmit={handleSubmit}>
                 <h1>Login To Start Your Fitness Training</h1>
-                <input
-                    className="inp"
-                    type="email"
-                    placeholder="Enter Email"
-                    required
-                    name="email"
-                    onChange={handleInput}
-                    value={user.email}
-                />
-                <input
-                    className="inp"
-                    type={showHidePassword ? "text" : "password"}
-                    placeholder="Enter Password"
-                    maxLength={16}
-                    onChange={handleInput}
-                    required
-                    name="password"
-                    value={user.password}
-                    
-                />
-                <img onClick={togglePassword} src={showHidePassword ? show : hide} alt="" />
+                <div className="input-group">
+                    <input placeholder="" type="email" onChange={handleInput} required name="email" value={user.email} />
+                    <label >Email</label>
+                </div>
+                <div className="input-group">
+                    <input placeholder="" type={showHidePassword ? "text" : "password"} onChange={handleInput} maxLength={16} required name="password" value={user.password} />
+                    <label >Password</label>
+                </div>
+                <img className="pass2" onClick={togglePassword} src={showHidePassword ? show : hide} alt="" />
                 <button type="submit" className="btn" disabled={isLoading}>
                     {isLoading ? "Loading..." : "Join"}
                 </button>
                 <p>Don't Have Account? <Link to='/register'>Register Now</Link></p>
                 <Link to='/forgot-password'>Forgot Password</Link>
                 <p className={message.type}>{message.text}</p>
-               
+
             </form>
-            
+
         </section>
     );
 }
