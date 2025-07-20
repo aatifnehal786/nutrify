@@ -34,6 +34,7 @@ export default function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsLoading(true)
 
         fetch("https://ntl-1.onrender.com/register", {
             method: "POST",
@@ -68,7 +69,7 @@ export default function Register() {
 
     return (
             <section className="container">
-            <form className="form" onSubmit={handleSubmit}>
+            <form className="form">
                     <h1>Start Your Fitness</h1>
                     <div className="input-group">
                         <input placeholder="" type="email" onChange={handleInput} required name="email" value={userDetails.email} />
@@ -88,7 +89,7 @@ export default function Register() {
                         <label >Enter Age</label>
                     </div>
 
-                    <button type="submit" className="btn" disabled={isLoading}>
+                    <button onClick={handleSubmit} type="submit" className="btn" disabled={isLoading}>
                         {isLoading ? "Loading..." : "Join"}
                     </button>
 

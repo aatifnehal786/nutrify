@@ -59,6 +59,7 @@ export default function Login() {
                 return res.json();
             })
             .then((data) => {
+                setIsLoading(false)
 
                 setMessage({ type: "success", text: data.message });
 
