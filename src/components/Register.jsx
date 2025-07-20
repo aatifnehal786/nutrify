@@ -84,7 +84,7 @@ export default function Register() {
                         <label>Enter Name</label>
                     </div>
                     <div className="input-group">
-                        <input placeholder="" type="text" onChange={handleInput} minLength={12} required name="age" value={userDetails.age} />
+                        <input placeholder="" type="text" onChange={handleInput} maxLength={12} required name="age" value={userDetails.age} />
                         <label >Enter Age</label>
                     </div>
 
