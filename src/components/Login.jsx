@@ -11,11 +11,50 @@ export default function Login() {
     const [message, setMessage] = useState({ type: "", text: "" });
     const [isLoading, setIsLoading] = useState(false);
     const [showHidePassword, setShowHidePassword] = useState(false)
+    const [typingTimeout, setTypingTimeout] = useState(null);
 
 
 
     const navigate = useNavigate();
 
+  const [strength, setStrength] = useState("");
+
+  // ✅ Check password strength on every password change
+  useEffect(() => {
+    const val = user.password;
+    const weakRegex = /.{1,5}/;
+    const mediumRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.{6,})/;
+    const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+    if (strongRegex.test(val)) setStrength("strong");
+    else if (mediumRegex.test(val)) setStrength("medium");
+    else if (weakRegex.test(val)) setStrength("weak");
+    else setStrength("");
+     if (typingTimeout) clearTimeout(typingTimeout);
+
+  // Set timeout to clear strength after 2 seconds of inactivity
+  const timeout = setTimeout(() => {
+    setStrength("");
+  }, 2000);
+
+  setTypingTimeout(timeout);
+
+  // Cleanup on component unmount
+  return () => clearTimeout(timeout);
+  }, [user.password]);
+
+  const getStrengthText = () => {
+    switch (strength) {
+      case "weak":
+        return "Weak Password";
+      case "medium":
+        return "Medium Password";
+      case "strong":
+        return "Strong Password";
+      default:
+        return "";
+    }
+  };
 
 
 
@@ -97,6 +136,7 @@ export default function Login() {
                     <label >Password</label>
                 </div>
                 <img className="pass2" onClick={togglePassword} src={showHidePassword ? show : hide} alt="" />
+                <div className={`strength ${strength}`}>{getStrengthText()}</div>
                 <button type="submit" className="btn" disabled={isLoading}>
                     {isLoading ? "Loading..." : "Join"}
                 </button>

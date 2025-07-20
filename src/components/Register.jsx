@@ -15,6 +15,7 @@ export default function Register() {
   const [isLoading, setIsLoading] = useState(false);
   const [showHidePassword, setShowHidePassword] = useState(false);
   const [strength, setStrength] = useState("");
+  const [typingTimeout, setTypingTimeout] = useState(null);
 
   // ✅ Check password strength on every password change
   useEffect(() => {
@@ -27,6 +28,18 @@ export default function Register() {
     else if (mediumRegex.test(val)) setStrength("medium");
     else if (weakRegex.test(val)) setStrength("weak");
     else setStrength("");
+
+     if (typingTimeout) clearTimeout(typingTimeout);
+
+  // Set timeout to clear strength after 2 seconds of inactivity
+  const timeout = setTimeout(() => {
+    setStrength("");
+  }, 3000);
+
+  setTypingTimeout(timeout);
+
+  // Cleanup on component unmount
+  return () => clearTimeout(timeout);
   }, [userDetails.password]);
 
   const getStrengthText = () => {
@@ -38,7 +51,7 @@ export default function Register() {
       case "strong":
         return "Strong Password";
       default:
-        return "Enter Password";
+        return "";
     }
   };
 
