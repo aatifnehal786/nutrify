@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import show from '../assets/show.png'
 import hide from '../assets/hide.png'
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Register() {
   const [userDetails, setUserDetails] = useState({
@@ -16,6 +17,7 @@ export default function Register() {
   const [showHidePassword, setShowHidePassword] = useState(false);
   const [strength, setStrength] = useState("");
   const [typingTimeout, setTypingTimeout] = useState(null);
+  const [reCaptchaValue,setReCaptchaValue] = useState()
 
   // ✅ Check password strength on every password change
   useEffect(() => {
@@ -68,13 +70,18 @@ export default function Register() {
     setShowHidePassword(prev => !prev);
   };
 
+
+    const recapchafunc = (value)=>{
+        setReCaptchaValue(value)
+
+    }
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     fetch("https://ntl-1.onrender.com/register", {
       method: "POST",
-      body: JSON.stringify(userDetails),
+      body: JSON.stringify(userDetails,re,{reCaptchaValue:reCaptchaValue}),
       headers: {
         "Content-Type": "application/json"
       }
@@ -161,7 +168,12 @@ export default function Register() {
           />
           <label>Enter Age</label>
         </div>
-
+         <div className="captcha">
+                <ReCAPTCHA
+                    sitekey="6LdsmokrAAAAAEVuKeVughwS581XoP-aPNLH8Cpb"
+                    onChange={recapchafunc}
+                />
+                </div>
         <button
           onClick={handleSubmit}
           type="submit"

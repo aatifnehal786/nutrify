@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import show from '../assets/show.png'
 import hide from '../assets/hide.png'
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 export default function Login() {
@@ -12,6 +13,7 @@ export default function Login() {
     const [isLoading, setIsLoading] = useState(false);
     const [showHidePassword, setShowHidePassword] = useState(false)
     const [typingTimeout, setTypingTimeout] = useState(null);
+    const [reCaptchaValue,setReCaptchaValue] = useState()
 
 
 
@@ -78,7 +80,7 @@ export default function Login() {
 
         fetch("https://ntl-1.onrender.com/login", {
             method: "POST",
-            body: JSON.stringify({ email: user.email, password: user.password }),
+            body: JSON.stringify({ email: user.email, password: user.password , reCaptchaValue:reCaptchaValue }),
             headers: {
                 "Content-Type": "application/json",
             },
@@ -121,6 +123,11 @@ export default function Login() {
 
     };
 
+    const recapchafunc = (value)=>{
+        setReCaptchaValue(value)
+
+    }
+
 
 
     return (
@@ -138,9 +145,16 @@ export default function Login() {
                 </div>
                 
                 <div className={`strength ${strength}`}>{getStrengthText()}</div>
+                <div className="captcha">
+                <ReCAPTCHA
+                    sitekey="6LdsmokrAAAAAEVuKeVughwS581XoP-aPNLH8Cpb"
+                    onChange={recapchafunc}
+                />
+                </div>
                 <button type="submit" className="btn" disabled={isLoading}>
                     {isLoading ? "Loading..." : "Join"}
                 </button>
+                
                 <p>Don't Have Account? <Link to='/register'>Register Now</Link></p>
                 <Link to='/forgot-password'>Forgot Password</Link>
                 <p className={message.type}>{message.text}</p>

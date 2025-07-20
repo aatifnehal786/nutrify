@@ -19,24 +19,30 @@
  margin: 1rem auto;
 }
 .input-group{
-    margin: 20px 0;
-    position: relative;
+    margin: 10px 0;
+    
 }
+.input-group{
+  position: relative;
+ }
 
+.input-group .pass2{
+  position: absolute;
+  top: 14px;
+  left: 82%;
+  transform: translateX(80%);
+  width: 25px;
+  margin-top: 5px;
+}
 .input-group .pass1{
   position: absolute;
-  top: 18px;
-  left: 84%;
-  transform: translateX(70%);
+  top: 14px;
+  left: 82%;
+  transform: translateX(80%);
   width: 25px;
+  margin-top: 5px;
 }
-.form .pass2{
-  position: absolute;
-  top: 50%;
-  left: 68%;
-  transform: translateX(70%);
-  width: 25px;
-}
+
 
 .input-group label{
     position: absolute;
@@ -352,10 +358,7 @@ a{
 }
 
 @media (max-width: 600px){
-  .form{
-    position: relative;
-
-  }
+ 
   .form img{
     position: absolute;
     width: 18px;
@@ -371,9 +374,9 @@ a{
     height: 100%;
     
   }
-  .input-group{
-    position: relative;
-  }
+ .input-group .password-input{
+  position: relative;
+ }
   .container .form{
     width: 100%;
   }
@@ -383,8 +386,8 @@ a{
   .input-group .pass2{
     position: absolute;
     top: 20%;
-    left: 80%;
-    margin-top: 5px;
+    left: 90%;
+    
     
 
   }
