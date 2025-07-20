@@ -20,6 +20,8 @@ export default function Register() {
     const [isLoading, setIsLoading] = useState(false);
     const [showHidePassword, setShowHidePassword] = useState(false)
 
+    const [strength, setStrength] = useState("");
+
     
 
 
@@ -31,7 +33,7 @@ export default function Register() {
         setUserDetails((prev) => {
             return { ...prev, [e.target.name]: e.target.value }
         })
-         const [strength, setStrength] = useState("");
+         
 
   const getStrength = (value) => {
     const weakRegex = /.{1,5}/;
