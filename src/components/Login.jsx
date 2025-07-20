@@ -134,8 +134,9 @@ export default function Login() {
                 <div className="input-group">
                     <input placeholder="" type={showHidePassword ? "text" : "password"} onChange={handleInput} maxLength={16} required name="password" value={user.password} />
                     <label >Password</label>
+                    <img className="pass2" onClick={togglePassword} src={showHidePassword ? show : hide} alt="" />
                 </div>
-                <img className="pass2" onClick={togglePassword} src={showHidePassword ? show : hide} alt="" />
+                
                 <div className={`strength ${strength}`}>{getStrengthText()}</div>
                 <button type="submit" className="btn" disabled={isLoading}>
                     {isLoading ? "Loading..." : "Join"}
