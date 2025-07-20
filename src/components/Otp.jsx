@@ -15,15 +15,15 @@ export default function Otp() {
                 "Content-Type": "application/json",
             },
         })
-        .then((res)=>{
-            return res.json()
+            .then((res) => {
+                return res.json()
             })
-        .then((data) => {
+            .then((data) => {
                 setMessage({ type: "success", text: data.message });
 
-                setTimeout(()=>{
-                    setMessage({type:"",text:""})
-                },5000)
+                setTimeout(() => {
+                    setMessage({ type: "", text: "" })
+                }, 5000)
             })
             .catch((err) => {
                 console.log(err);
@@ -40,8 +40,8 @@ export default function Otp() {
                 "Content-Type": "application/json",
             },
         })
-           .then((res)=>{
-            setIsLoading(false);
+            .then((res) => {
+                setIsLoading(false);
                 if (!res.ok) {
                     if (res.status === 404) {
                         setMessage({ type: "error", text: "User Not Found With this Email, Please Login Again" });
@@ -53,14 +53,14 @@ export default function Otp() {
                     throw new Error(`HTTP error! status: ${res.status}`);
                 }
                 return res.json();
-           })
+            })
             .then((data) => {
                 if (data) {
-                   
+
                     setMessage({ type: "success", text: "OTP verified successfully" });
-                    setTimeout(()=>{
-                        setMessage({type:"",text:""})
-                    },5000)
+                    setTimeout(() => {
+                        setMessage({ type: "", text: "" })
+                    }, 5000)
                 } else {
                     setMessage({ type: "error", text: data.error });
                 }
@@ -74,28 +74,28 @@ export default function Otp() {
     return (
         <section className="container">
             <form className="form">
-                <input
-                    className="inp"
-                    type="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter Email"
-                    required
-                    name="email"
+                <div className="input-group">
+                    <input className="inp" type="email" onChange={(e) => setEmail(e.target.value)} placeholder="" required name="email"
                     value={email}
                 />
-                <input
+                <label>Enter Email</label>
+                </div>
+               <div className="input-group">
+                 <input
                     className="inp"
                     type="text"
                     onChange={(e) => setOtp(e.target.value)}
-                    placeholder="Enter OTP"
+                    placeholder=""
                     name="otp"
                     value={otp}
                 />
+                <label>Enter Otp</label>
+               </div>
                 <button type="submit" className="btn" disabled={isLoading} onClick={sendOtp}>
-                {isLoading ? "Loading..." : "send otp"}
+                    {isLoading ? "Loading..." : "send otp"}
                 </button>
                 <button type="submit" className="btn" disabled={isLoading} onClick={verifyOtp}>
-                {isLoading ? "Loading..." : "verify otp"}
+                    {isLoading ? "Loading..." : "verify otp"}
                 </button>
                 {message.text && <div><p className={message.type}>{message.text}</p></div>}
                 <p><Link to="/login">Go to login page</Link></p>

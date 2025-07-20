@@ -43,15 +43,19 @@ export default function Unregister() {
 
     return (
         <section className="container form">
-            <input
+          <div className="input-group">
+              <input
                 className="inp"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter Email"
+                placeholder=""
                 required
                 name="email"
                 value={email}
             />
+            <label>Enter Email</label>
+
+          </div>
             <button onClick={handleSubmit} className="btn">Un-Register</button>
             {message && <p className={message.type}>{message.text}</p>}
         </section>

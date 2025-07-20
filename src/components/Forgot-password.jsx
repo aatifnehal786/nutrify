@@ -96,19 +96,20 @@ export default function ForgotPassword(){
 
             <div className="form">
                 <h4>Enter your Email to get reset Link</h4>
-                <input onChange={(e)=>setEmail(e.target.value)} placeholder="Enter Your Email" className="inp" type="email" name="email" id="" value={email} />
+               <div className="input-group">
+                 <input onChange={(e)=>setEmail(e.target.value)} placeholder="" className="inp" type="email" name="email" id="" value={email} />
+                 <label>Email</label>
+               </div>
                 <button type="submit" onClick={Forgotpassword} className="btn btn-2"  disabled={isLoading}>{isLoading ? "Loading..." : "send"}</button>
-                <input 
-            className="input" onChange={(e)=>setOtp(e.target.value)}
-            type="otp" placeholder="Enter Otp" value={otp}/>
+                <div className="input-group">
+                    <input className="input" onChange={(e)=>setOtp(e.target.value)} type="otp" placeholder="" value={otp}/>
+                    <label>Enter Otp</label>
+                </div>
             
-            <input
-                className="input"
-                type="password"
-                placeholder="Enter your new password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-            />
+           <div className="input-group">
+             <input className="input" type="password" placeholder="" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}/>
+             <label>Enter Password</label>
+           </div>
             <button type="submit" className="btn btn-1" onClick={handleResetPassword} disabled={isLoading2}>{isLoading2 ? "Loading..." : "reset"}</button>
             
             <Link to='/login'>Go to Login page</Link>
