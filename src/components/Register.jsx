@@ -20,6 +20,8 @@ export default function Register() {
     const [isLoading, setIsLoading] = useState(false);
     const [showHidePassword, setShowHidePassword] = useState(false)
 
+    
+
 
 
 
@@ -29,6 +31,40 @@ export default function Register() {
         setUserDetails((prev) => {
             return { ...prev, [e.target.name]: e.target.value }
         })
+         const [strength, setStrength] = useState("");
+
+  const getStrength = (value) => {
+    const weakRegex = /.{1,5}/;
+    const mediumRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.{6,})/;
+    const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+    if (strongRegex.test(value)) return "strong";
+    else if (mediumRegex.test(value)) return "medium";
+    else if (weakRegex.test(value)) return "weak";
+    else return "";
+  };
+
+  const handleChange = (e) => {
+    const val = e.target.value;
+    setPassword(val);
+    setStrength(getStrength(val));
+  };
+
+  const getStrengthText = () => {
+    switch (strength) {
+      case "weak":
+        return "Weak Password";
+      case "medium":
+        return "Medium Password";
+      case "strong":
+        return "Strong Password";
+      default:
+        return "Enter Password";
+    }
+  };
+
+  handleChange();
+  getStrengthText();
 
     }
 
@@ -79,6 +115,7 @@ export default function Register() {
                         <input placeholder="" type={showHidePassword ? "text" : "password"} onChange={handleInput} maxLength={16} required name="password" value={userDetails.password} />
                         <label >Password</label>
                         <img className="pass1" onClick={togglePassword} src={showHidePassword ? show : hide} alt="" />
+                        <div className={`strength ${strength}`}>{getStrengthText()}</div>
                     </div>
                     <div className="input-group">
                         <input placeholder="" type="text" onChange={handleInput} required name="name" value={userDetails.name} />
