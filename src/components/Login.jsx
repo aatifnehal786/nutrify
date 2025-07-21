@@ -77,8 +77,8 @@ export default function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-          if (!reCaptchaValue) {
-      alert("Please complete the reCAPTCHA");
+        if (!reCaptchaValue) {
+      setMessage({ type: "error", text: "Please verify captcha" });
       return;
     }
         setIsLoading(true);

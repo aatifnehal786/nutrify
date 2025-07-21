@@ -78,7 +78,7 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
         if (!reCaptchaValue) {
-      alert("Please complete the reCAPTCHA");
+      setMessage({ type: "error", text: "Please verify captcha" });
       return;
     }
     setIsLoading(true);
