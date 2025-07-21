@@ -77,6 +77,10 @@ export default function Register() {
     }
   const handleSubmit = (e) => {
     e.preventDefault();
+        if (!reCaptchaValue) {
+      alert("Please complete the reCAPTCHA");
+      return;
+    }
     setIsLoading(true);
 
     fetch("https://ntl-1.onrender.com/register", {
