@@ -341,7 +341,11 @@ a{
   color: antiquewhite;
 }
 
-
+.captcha{
+  width: 150px;
+  height: 80px;
+  margin: 0 auto;
+}
 
 @media (max-width: 480px){
   .form{
@@ -374,7 +378,7 @@ a{
     height: 100%;
     
   }
- .input-group .password-input{
+ .input-group{
   position: relative;
  }
   .container .form{
@@ -386,11 +390,22 @@ a{
   .input-group .pass2{
     position: absolute;
     top: 20%;
-    left: 90%;
-    
-    
-
+    left: 81%;
   }
+  .captcha{
+  width: 300px;
+  height: 80px;
+  margin: 0 auto;
+  border: 1px solid red;
+  position: relative;
+}
+.captcha .captcha-child{
+  display: inline-block;
+  width: 60%;
+  height: 100%;
+  position: absolute;
+}
+
   
 }
 

@@ -173,7 +173,7 @@ export default function Register() {
           <label>Enter Age</label>
         </div>
          <div className="captcha">
-                <ReCAPTCHA
+                <ReCAPTCHA className="captcha-child"
                     sitekey="6LdsmokrAAAAAEVuKeVughwS581XoP-aPNLH8Cpb"
                     onChange={recapchafunc}
                 />
