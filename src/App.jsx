@@ -19,9 +19,13 @@ import { refreshAccessToken } from './components/refreshAccessToken';
 
 
 function App() {
-  const [loggedUser, setLoggedUser] = useState(
-    JSON.parse(localStorage.getItem('nutrify-user'))
+ const [loggedUser, setLoggedUser] = useState(() => {
+  return (
+    JSON.parse(localStorage.getItem("nutrify-user")) ||
+    JSON.parse(sessionStorage.getItem("nutrify-user"))
   );
+});
+
 
   useEffect(() => {
     (async () => {

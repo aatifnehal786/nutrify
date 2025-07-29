@@ -72,14 +72,18 @@ export default function Login() {
                 setMessage({ type: "success", text: data.message });
 
 
-                if (data.accessToken) {
-                    localStorage.setItem("nutrify-user", JSON.stringify(data));
-                    loggedData.setLoggedUser(data);
-                    navigate("/track");
+               if (data.accessToken) {
+    loggedData.setLoggedUser(data);
 
+    if (keepSignedIn) {
+        localStorage.setItem("nutrify-user", JSON.stringify(data));
+        navigate("/track");
+    } else {
+        sessionStorage.setItem("nutrify-user", JSON.stringify(data));
+        navigate("/track"); // or "/track", depending on your design
+    }
+}
 
-
-                }
 
 
             })
