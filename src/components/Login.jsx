@@ -47,7 +47,7 @@ export default function Login() {
 
         fetch("https://ntl-1.onrender.com/login", {
             method: "POST",
-            body: JSON.stringify({ email: user.email, password: user.password , reCaptchaValue:reCaptchaValue ,keepSignedIn}),
+            body: JSON.stringify({ email: user.email, password: user.password , reCaptchaValue:reCaptchaValue ,keepSignedIn:keepSignedIn}),
             headers: {
                 "Content-Type": "application/json",
             },
