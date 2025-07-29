@@ -15,7 +15,8 @@ import Diet from './components/Diet';
 import ForgotPassword from './components/Forgot-password';
 import Otp from './components/Otp';
 import Unregister from './components/Un-register';
-import { refreshAccessToken } from './components/refreshAccessToken';
+
+
 
 
 function App() {
@@ -26,16 +27,6 @@ function App() {
   );
 });
 
-
-  useEffect(() => {
-    (async () => {
-      const newToken = await refreshAccessToken();
-      if (!newToken) {
-        // Optionally redirect to login
-        console.log("User not logged in");
-      }
-    })();
-  }, []);
 
   const router = createBrowserRouter([
     {

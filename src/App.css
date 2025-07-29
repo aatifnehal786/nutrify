@@ -42,6 +42,14 @@
   width: 25px;
   margin-top: 5px;
 }
+.input-group .pass3{
+  position: absolute;
+  top: 14px;
+  left: 82%;
+  transform: translateX(80%);
+  width: 25px;
+  margin-top: 5px;
+}
 
 
 .input-group label{

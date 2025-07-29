@@ -4,6 +4,7 @@ import { UserContext } from "../contexts/UserContext";
 import show from '../assets/show.png'
 import hide from '../assets/hide.png'
 import ReCAPTCHA from "react-google-recaptcha";
+import AutoRedirect from "./autoRedirect";
 
 
 export default function Login() {
@@ -106,6 +107,7 @@ export default function Login() {
 
     return (
         <section className="container">
+            <AutoRedirect/>
             <form className="form" onSubmit={handleSubmit}>
                 <h1>Login To Start Your Fitness Training</h1>
                 <div className="input-group">
