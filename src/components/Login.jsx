@@ -13,6 +13,7 @@ export default function Login() {
     const [isLoading, setIsLoading] = useState(false);
     const [showHidePassword, setShowHidePassword] = useState(false)
     const [reCaptchaValue,setReCaptchaValue] = useState()
+    const [keepSignedIn, setKeepSignedIn] = useState(false);
 
 
 
@@ -46,7 +47,7 @@ export default function Login() {
 
         fetch("https://ntl-1.onrender.com/login", {
             method: "POST",
-            body: JSON.stringify({ email: user.email, password: user.password , reCaptchaValue:reCaptchaValue }),
+            body: JSON.stringify({ email: user.email, password: user.password , reCaptchaValue:reCaptchaValue ,keepSignedIn:keepSignedIn}),
             headers: {
                 "Content-Type": "application/json",
             },
@@ -71,7 +72,7 @@ export default function Login() {
                 setMessage({ type: "success", text: data.message });
 
 
-                if (data.token) {
+                if (data.accessToken) {
                     localStorage.setItem("nutrify-user", JSON.stringify(data));
                     loggedData.setLoggedUser(data);
                     navigate("/track");
@@ -88,6 +89,9 @@ export default function Login() {
             });
 
     };
+
+ 
+
 
     const recapchafunc = (value)=>{
         setReCaptchaValue(value)
@@ -116,6 +120,12 @@ export default function Login() {
                     sitekey="6LdsmokrAAAAAEVuKeVughwS581XoP-aPNLH8Cpb"
                     onChange={recapchafunc}
                 />
+                </div>
+                <div className="keep-signedin">
+                    <label>
+        <input type="checkbox" checked={keepSignedIn} onChange={(e) => setKeepSignedIn(e.target.checked)} />
+        Keep me signed in
+      </label>
                 </div>
                 <button type="submit" className="btn" disabled={isLoading}>
                     {isLoading ? "Loading..." : "Join"}

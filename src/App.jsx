@@ -2,6 +2,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from 'react-router-dom';
+import { useEffect } from 'react';
 import Register from './components/Register';
 import Login from './components/Login';
 import Track from './components/Track';
@@ -14,12 +15,23 @@ import Diet from './components/Diet';
 import ForgotPassword from './components/Forgot-password';
 import Otp from './components/Otp';
 import Unregister from './components/Un-register';
+import { refreshAccessToken } from './components/refreshAccessToken';
 
 
 function App() {
   const [loggedUser, setLoggedUser] = useState(
     JSON.parse(localStorage.getItem('nutrify-user'))
   );
+
+  useEffect(() => {
+    (async () => {
+      const newToken = await refreshAccessToken();
+      if (!newToken) {
+        // Optionally redirect to login
+        console.log("User not logged in");
+      }
+    })();
+  }, []);
 
   const router = createBrowserRouter([
     {
