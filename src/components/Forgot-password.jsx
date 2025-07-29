@@ -16,7 +16,7 @@ export default function ForgotPassword(){
     const [showHidePassword, setShowHidePassword] = useState(false);
 
     useEffect(() => {
-        const val = userDetails.password;
+        const val = newPassword;
         const weakRegex = /.{1,5}/;
         const mediumRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.{6,})/;
         const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
@@ -37,7 +37,7 @@ export default function ForgotPassword(){
     
       // Cleanup on component unmount
       return () => clearTimeout(timeout);
-      }, [userDetails.password]);
+      }, [newPassword]);
     
       const getStrengthText = () => {
         switch (strength) {
