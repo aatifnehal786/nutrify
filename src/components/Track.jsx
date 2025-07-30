@@ -27,7 +27,7 @@ export default function Track()
          fetch(`https://ntl-1.onrender.com/foods/${event.target.value}`,{
                 method:"GET",
                 headers:{
-                    "Authorization":`Bearer ${loggedData.loggedUser.token}`
+                    "Authorization":`Bearer ${loggedData.loggedUser.accessToken}`
                 }
 
             })
