@@ -1,4 +1,3 @@
-// components/AutoRedirect.jsx
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -14,12 +13,13 @@ const AutoRedirect = () => {
     const isOnLoginPage =
       location.pathname === "/" || location.pathname === "/login";
 
+    // ✅ Redirect only if user is logged in and not already on /track
     if (storedUser && isOnLoginPage) {
-      navigate("/track");
+      navigate("/track", { replace: true });
     }
   }, [location.pathname, navigate]);
 
-  return null; // Nothing rendered
+  return null;
 };
 
 export default AutoRedirect;
