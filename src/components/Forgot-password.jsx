@@ -68,13 +68,14 @@ export default function ForgotPassword(){
             }
            })
            .then((res)=>{
+          
             
             return res.json()
            })
            .then((data)=>{
             console.log(data)
             setIsLoading(false)
-            setMessage({type:"success",text:data.message})
+            setMessage({type:"success" || "error",text:data.message || data.error})
             setTimeout(()=>{
                 setMessage({type:"",text:""})
                 
