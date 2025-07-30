@@ -26,7 +26,7 @@ export default function Diet()
         fetch(`https://ntl-1.onrender.com/track/${loggedData.loggedUser.userid}/${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}`,{
             method:"GET",
             headers:{
-                "Authorization":`Bearer ${loggedData.loggedUser.token}`
+                "Authorization":`Bearer ${loggedData.loggedUser.accessToken}`
             }
         })
         .then((res)=>{
