@@ -38,6 +38,7 @@ export default function Track()
                 if(data.message===undefined)
                 {
                     setFoodItems(data);
+                    setFood(data)
                 }
                 else 
                 {
