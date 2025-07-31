@@ -42,6 +42,7 @@ export default function Login() {
 
         if (!reCaptchaValue) {
       setMessage({ type: "error", text: "Please verify captcha" });
+      setIsLoading(false)
       return;
     }
         setIsLoading(true);
