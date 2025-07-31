@@ -37,7 +37,7 @@ export default function Food(props)
 
                 let copyFood = {...food};
 
-                copyFood.protein = (foodInitial.protein*quantity)/100;
+                copyFood.protien = (foodInitial.protien*quantity)/100;
                 copyFood.carbohydrates = (foodInitial.carbohydrates*quantity)/100;
                 copyFood.fat = (foodInitial.fat*quantity)/100;
                 copyFood.fiber = (foodInitial.fiber*quantity)/100;
@@ -58,7 +58,7 @@ export default function Food(props)
             user:loggedData.loggedUser.userid,
             food:props.food._id,
             details:{
-                protein:food.protein,
+                protein:food.protien,
                 carbohydrates:food.carbohydrates,
                 fat:food.fat,
                 fiber:food.fiber,
@@ -101,7 +101,7 @@ export default function Food(props)
 
             <div className="nutrient">
                 <p className="n-title">Protein</p>
-                <p className="n-value">{food.protein}g</p>
+                <p className="n-value">{food.protien}g</p>
             </div>
 
             <div className="nutrient">
