@@ -19,6 +19,18 @@ export default function Track()
     
    },[])
 
+   function debounce(cb,delay=1000){
+    let timeout;
+    return (...args)=>{
+        clearTimeout(timeout)
+        timeout = setTimeout(()=>{
+            cb(...args)
+        },delay)
+    }
+   }
+
+   const debouncedSearchFood = debounce(searchFood, 1000);
+
     function searchFood(event)
     {
         if(event.target.value.length!==0)
@@ -71,7 +83,7 @@ export default function Track()
 
                 <div className="search">
 
-                    <input className="search-inp" onChange={searchFood}
+                    <input className="search-inp" onChange={debouncedSearchFood}
                     type="search" placeholder="Search Food Item"/>
 
                     {
