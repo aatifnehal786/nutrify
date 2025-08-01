@@ -107,8 +107,10 @@ export default function Login() {
 
 
     return (
+        <>
+        <AutoRedirect/>
         <section className="container">
-            <AutoRedirect/>
+           
             <form className="form" onSubmit={handleSubmit}>
                 <h1>Login To Start Your Fitness Training</h1>
                 <div className="input-group">
@@ -145,5 +147,7 @@ export default function Login() {
             </form>
 
         </section>
+        </>
+         
     );
 }
