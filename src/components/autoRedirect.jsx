@@ -1,22 +1,22 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const AutoRedirect = () => {
   const navigate = useNavigate();
-
+  const location = useLocation();
 
   useEffect(() => {
     const storedUser =
       JSON.parse(localStorage.getItem("nutrify-user")) ||
       JSON.parse(sessionStorage.getItem("nutrify-user"));
 
-    
+    // Only redirect from /login or /register
+    const publicOnlyPaths = ["/login", "/register", "/forgot-password"];
 
-    // ✅ Redirect only if user is logged in and not already on /track
-    if (storedUser) {
+    if (storedUser && publicOnlyPaths.includes(location.pathname)) {
       navigate("/track", { replace: true });
     }
-  }, []);
+  }, [location.pathname, navigate]);
 
   return null;
 };
