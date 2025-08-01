@@ -9,6 +9,7 @@ export default function Header(){
 
     function logOut(){
         localStorage.removeItem("nutrify-user")
+        sessionStorage.removeItem("nutrify-user");
         loggedData.setLoggedUser(null)
         navigate("/login")
     }
