@@ -10,13 +10,13 @@ export default function Unregister() {
 
     const navigate = useNavigate()
     const handleSubmit = async () => {
-        
+        setIsLoading(true);
         try {
             const response = await fetch("https://ntl-1.onrender.com/un-register", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${loggedData.loggedUser.token}`,
+                    "Authorization": `Bearer ${loggedData.loggedUser.accessToken}`,
                 },
               
                 body: JSON.stringify({ email }), // Wrap email in an object
@@ -35,7 +35,7 @@ export default function Unregister() {
         }
 
         setTimeout(()=>{
-            localStorage.removeItem("nutrify-user")
+        localStorage.removeItem("nutrify-user")
         loggedData.setLoggedUser(null)
         navigate("/login")
         },10000)

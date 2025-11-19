@@ -15,6 +15,7 @@ import Diet from './components/Diet';
 import ForgotPassword from './components/Forgot-password';
 import Otp from './components/Otp';
 import Unregister from './components/Un-register';
+import PublicRoute from './components/PublicRoute';
 
 
 
