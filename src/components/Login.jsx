@@ -56,16 +56,6 @@ export default function Login() {
         })
             .then((res) => {
                 setIsLoading(false);
-                if (!res.ok) {
-                    if (res.status === 404) {
-                        setMessage({ type: "error", text: "User Not Found With this Email, Please Login Again" });
-                    } else if (res.status === 401) {
-                        setMessage({ type: "error", text: "Wrong Password" });
-                    } else {
-                        setMessage({ type: "error", text: "Something went wrong. Please try again later." });
-                    }
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
                 return res.json();
             })
             .then((data) => {
