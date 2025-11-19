@@ -85,7 +85,7 @@ export default function Register() {
 
     fetch("https://ntl-1.onrender.com/register", {
       method: "POST",
-      body: JSON.stringify(userDetails,re,{reCaptchaValue:reCaptchaValue}),
+      body: JSON.stringify(userDetails,{reCaptchaValue:reCaptchaValue}),
       headers: {
         "Content-Type": "application/json"
       }
