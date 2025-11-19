@@ -7,6 +7,7 @@ export default function Otp() {
     const [isLoading, setIsLoading] = useState(false);
 
     const sendOtp = (e) => {
+        setIsLoading(true);
         e.preventDefault();
         fetch("https://ntl-1.onrender.com/send-otp", {
             method: "POST",
@@ -19,6 +20,7 @@ export default function Otp() {
                 return res.json()
             })
             .then((data) => {
+                setIsLoading(false);
                 setMessage({ type: "success", text: data.message });
 
                 setTimeout(() => {
@@ -32,6 +34,7 @@ export default function Otp() {
     };
 
     const verifyOtp = (e) => {
+        setIsLoading(true);
         e.preventDefault();
         fetch("https://ntl-1.onrender.com/verify-otp", {
             method: "POST",
@@ -41,7 +44,7 @@ export default function Otp() {
             },
         })
             .then((res) => {
-                setIsLoading(false);
+                setIsLoading(true);
                 if (!res.ok) {
                     if (res.status === 404) {
                         setMessage({ type: "error", text: "User Not Found With this Email, Please Login Again" });
@@ -55,11 +58,14 @@ export default function Otp() {
                 return res.json();
             })
             .then((data) => {
+                setIsLoading(false);
                 if (data) {
 
                     setMessage({ type: "success", text: "OTP verified successfully" });
                     setTimeout(() => {
                         setMessage({ type: "", text: "" })
+                        setEmail("")
+                        setOtp("")
                     }, 5000)
                 } else {
                     setMessage({ type: "error", text: data.error });
