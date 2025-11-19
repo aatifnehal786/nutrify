@@ -39,9 +39,10 @@ function App() {
       element: <Register />,
     },
     {
-      path: '/login',
-      element: <Login />,
+      path: "/login",
+      element: <PublicRoute Component={Login} />,
     },
+
     {
       path: '/track',
       element: <Private Component={Track} />,

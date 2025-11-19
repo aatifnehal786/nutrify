@@ -19,6 +19,16 @@ export default function Diet()
         totalFats:0,
         totalFiber:0
     })
+    
+    
+    useEffect(() => {
+  window.history.pushState(null, "", window.location.href);
+
+  window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+  };
+}, []);
+
 
 
     useEffect(()=>{

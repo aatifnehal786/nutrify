@@ -11,6 +11,16 @@ export default function Track()
 
     const [food,setFood] = useState(null);
     let [name,setName] = useState("")
+
+
+    useEffect(() => {
+  window.history.pushState(null, "", window.location.href);
+
+  window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+  };
+}, []);
+
     
    useEffect(()=>{
     console.log(loggedData.loggedUser)
