@@ -4,14 +4,14 @@ import { useNavigate,Link } from "react-router-dom"
 
 export default function Header(){
 
-    const loggedData = useContext(UserContext)
-    const navigate = useNavigate()
+    const loggedData = useContext(UserContext);
+    const navigate = useNavigate();
 
     function logOut(){
-        localStorage.removeItem("nutrify-user")
+        localStorage.removeItem("nutrify-user");
         sessionStorage.removeItem("nutrify-user");
-        loggedData.setLoggedUser(null)
-        navigate("/login")
+        loggedData.setLoggedUser(null);
+        navigate("/login",{ replace: true });
     }
 
     return (

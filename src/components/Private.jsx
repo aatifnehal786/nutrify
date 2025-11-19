@@ -1,23 +1,14 @@
-import { useContext } from "react"
-import { Navigate } from "react-router-dom"
-import { UserContext } from "../contexts/UserContext"
+import { Navigate } from "react-router-dom";
 
-export default function Private(props){
+export default function Private({ Component }) {
 
-    const loggedData = useContext(UserContext)
+  const storedUser =
+    JSON.parse(localStorage.getItem("nutrify-user")) ||
+    JSON.parse(sessionStorage.getItem("nutrify-user"));
 
+  if (!storedUser) {
+    return <Navigate to="/login" replace />;
+  }
 
-    return (
-
-        loggedData.loggedUser!==null?
-        <props.Component/>
-        :
-        <Navigate to="/login"/>
-
-
-        
-
-
-
-    )
+  return <Component />;
 }
