@@ -36,9 +36,10 @@ export default function Unregister() {
 
         setTimeout(()=>{
         localStorage.removeItem("nutrify-user")
+        sessionStorage.removeItem("nutrify-user");
         loggedData.setLoggedUser(null)
         navigate("/login")
-        },10000)
+        },3000)
     };
 
     return (
