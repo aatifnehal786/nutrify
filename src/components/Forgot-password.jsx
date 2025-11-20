@@ -74,7 +74,6 @@ export default function ForgotPassword(){
            })
            .then((data)=>{
             console.log(data)
-            setEmail(data.email);
             setIsLoading(false)
             setMessage({type:"success" || "error",text:data.message || data.error})
             setTimeout(()=>{
@@ -143,11 +142,16 @@ export default function ForgotPassword(){
         <section className="container">
 
             <div className="form">
+                <h4>Enter your Email to get OTP</h4>
+               <div className="input-group">
+                 <input onChange={(e)=>setEmail(e.target.value)} placeholder="" className="inp" type="email" name="email" id="" value={email} />
+                 <label>Email</label>
+               </div>
+                <button type="submit" onClick={Forgotpassword} className="btn btn-2"  disabled={isLoading}>{isLoading ? "Loading..." : "send"}</button>
                 <div className="input-group">
                     <input className="input" onChange={(e)=>setOtp(e.target.value)} type="otp" placeholder="" value={otp}/>
                     <label>Enter Otp</label>
                 </div>
-                <button type="submit" onClick={Forgotpassword} className="btn btn-2"  disabled={isLoading}>{isLoading ? "Loading..." : "send Otp"}</button>
             
            <div className="input-group">
              <input className="input" type="password" placeholder="" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}/>

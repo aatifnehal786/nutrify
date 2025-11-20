@@ -23,8 +23,7 @@ export default function Otp() {
             .then((data) => {
                 setIsLoading1(false);
                 setMessage({ type: "success", text: data.message });
-                console.log(data);
-                setEmail(data.email);
+
                 setTimeout(() => {
                     setMessage({ type: "", text: "" })
                 }, 5000)
@@ -81,6 +80,12 @@ export default function Otp() {
     return (
         <section className="container">
             <form className="form">
+                <div className="input-group">
+                    <input className="inp" type="email" onChange={(e) => setEmail(e.target.value)} placeholder="" required name="email"
+                    value={email}
+                />
+                <label>Enter Email</label>
+                </div>
                <div className="input-group">
                  <input
                     className="inp"
