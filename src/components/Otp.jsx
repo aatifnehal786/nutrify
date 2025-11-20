@@ -4,10 +4,11 @@ export default function Otp() {
     const [otp, setOtp] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState({ type: "", text: "" });
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading1, setIsLoading1] = useState(false);
+    const [isLoading2, setIsLoading2] = useState(false);
 
     const sendOtp = (e) => {
-        setIsLoading(true);
+        setIsLoading1(true);
         e.preventDefault();
         fetch("https://ntl-1.onrender.com/send-otp", {
             method: "POST",
@@ -20,7 +21,7 @@ export default function Otp() {
                 return res.json()
             })
             .then((data) => {
-                setIsLoading(false);
+                setIsLoading1(false);
                 setMessage({ type: "success", text: data.message });
                 console.log(data);
                 setEmail(data.email);
@@ -35,7 +36,7 @@ export default function Otp() {
     };
 
     const verifyOtp = (e) => {
-        setIsLoading(true);
+        setIsLoading2(true);
         e.preventDefault();
         fetch("https://ntl-1.onrender.com/verify-otp", {
             method: "POST",
@@ -45,7 +46,6 @@ export default function Otp() {
             },
         })
             .then((res) => {
-                setIsLoading(true);
                 if (!res.ok) {
                     if (res.status === 404) {
                         setMessage({ type: "error", text: "User Not Found With this Email, Please Login Again" });
@@ -59,7 +59,7 @@ export default function Otp() {
                 return res.json();
             })
             .then((data) => {
-                setIsLoading(false);
+                setIsLoading2(false);
                 if (data) {
 
                     setMessage({ type: "success", text: "OTP verified successfully" });
@@ -92,11 +92,11 @@ export default function Otp() {
                 />
                 <label>Enter Otp</label>
                </div>
-                <button type="submit" className="btn" disabled={isLoading} onClick={sendOtp}>
-                    {isLoading ? "Loading..." : "send otp"}
+                <button type="submit" className="btn" disabled={isLoading1} onClick={sendOtp}>
+                    {isLoading1 ? "Loading..." : "send otp"}
                 </button>
-                <button type="submit" className="btn" disabled={isLoading} onClick={verifyOtp}>
-                    {isLoading ? "Loading..." : "verify otp"}
+                <button type="submit" className="btn" disabled={isLoading2} onClick={verifyOtp}>
+                    {isLoading2 ? "Loading..." : "verify otp"}
                 </button>
                 {message.text && <div><p className={message.type}>{message.text}</p></div>}
                 <p><Link to="/login">Go to login page</Link></p>
